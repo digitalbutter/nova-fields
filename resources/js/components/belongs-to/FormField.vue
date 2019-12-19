@@ -236,13 +236,16 @@ export default {
      * Get the query params for getting available resources
      */
     queryParams() {
+      var search = location.search.substring(1);
+      var params = JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g,'":"') + '"}', function(key, value) { return key===""?value:decodeURIComponent(value) })
+
+      params.current = this.selectedResourceId;
+      params.first = this.initializingWithExistingResource;
+      params.search = this.search;
+      params.withTrashed = this.withTrashed;
+
       return {
-        params: {
-          current: this.selectedResourceId,
-          first: this.initializingWithExistingResource,
-          search: this.search,
-          withTrashed: this.withTrashed
-        }
+        params:params
       }
     },
 
