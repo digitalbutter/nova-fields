@@ -242,6 +242,7 @@ export default {
       else
       var params = {};
 
+      params.belongsToId = this.field.belongsToId;
       params.current = this.selectedResourceId;
       params.first = this.initializingWithExistingResource;
       params.search = this.search;
