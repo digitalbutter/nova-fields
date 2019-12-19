@@ -237,7 +237,10 @@ export default {
      */
     queryParams() {
       var search = location.search.substring(1);
+      if(search!="")
       var params = JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g,'":"') + '"}', function(key, value) { return key===""?value:decodeURIComponent(value) })
+      else
+      var params = {};
 
       params.current = this.selectedResourceId;
       params.first = this.initializingWithExistingResource;
